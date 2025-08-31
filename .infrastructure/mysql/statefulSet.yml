@@ -60,18 +60,6 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 2
           timeoutSeconds: 1
-      volumes:
-      - name: config-map
-        configMap:
-          name: mysql
-  volumeClaimTemplates:
-  - metadata:
-      name: data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          storage: 2Gi
       tolerations:
         - key: "app"
           operator: "Equal"
@@ -95,3 +83,16 @@ spec:
                     values:
                       - mysql
               topologyKey: "kubernetes.io/hostname"
+      volumes:
+      - name: config-map
+        configMap:
+          name: mysql
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 2Gi
+      
